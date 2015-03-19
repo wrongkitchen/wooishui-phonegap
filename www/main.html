@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>wooishui</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://www.google-analytics.com" rel="dns-prefetch">
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link href="https://fontastic.s3.amazonaws.com/CWNp47vRfsX6Apg6FPgnZg/icons.css" rel="stylesheet">
+    <link href="bower_components/framework7/dist/css/framework7.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <!--[if lte IE 7]>
+    <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/''>upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="layout" class="views">
+      <div class="view view-main">
+        <div id="header">
+          <div class="logo">wooishui</div>
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="left"><a id="cancelBtn" onclick="sgd.changeSection('home')" class="headerBtn txt">Cancel</a><a id="backBtn" onclick="sgd.changeSection('home')" class="headerBtn txt">Back</a><a id="addBtn" onclick="sgd.changeSection('form')" class="icon-plus headerBtn active"></a></div>
+              <div class="center"></div>
+              <div class="right"><a href="javascript:void(0)" class="headerBtn menu-link icon-share-square"></a></div>
+            </div>
+          </div>
+        </div>
+        <div class="pages">
+          <div data-page="home" class="page">
+            <div id="homeDebts" class="page-content infinite-scroll pull-to-refresh-content">
+              <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+              </div>
+              <div id="dataListError" class="content-block-title"><span class="icon-page-search"></span>
+                <div class="txt">Cannot find any debt</div>
+              </div>
+              <div id="dataListWrap">
+                <div class="content-block-title">My debts</div>
+                <div class="list-block">
+                  <ul id="dataList"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-page="detail" data-nav="back" class="page cached">
+            <div id="connectUser">Connect wooishui user</div>
+            <div class="page-content infinite-scroll">
+              <div id="dataListDetailError" class="content-block-title"><span class="icon-page-search"></span>
+                <div class="txt">Cannot find any debt of this user</div>
+              </div>
+              <div id="dataListDetailWrap">
+                <div class="content-block-title">Debts detail</div>
+                <div class="list-block media-list">
+                  <ul id="dataListDetail"></ul>
+                </div>
+              </div>
+              <div id="rejectListDetailWrap">
+                <div class="content-block-title">Rejected Debts</div>
+                <div class="list-block media-list">
+                  <ul id="rejectListDetail"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-page="form" data-nav="cancel" class="page cached">
+            <div class="page-content infinite-scroll">
+              <div class="content-block-title">Create new debt</div>
+              <div class="list-block">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Name</div>
+                      <div class="item-input">
+                        <input id="otherUserName" type="text" placeholder="Name">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="content-block">
+                <div class="row">
+                  <div class="col-100"><a onclick="sgd.changeSection('form-second', [], true)" class="button button-fill color-red button-big">Enter</a></div>
+                </div>
+              </div>
+              <div class="content-block-label">
+                <p class="or">or</p>
+              </div>
+              <div class="content-block">
+                <div class="row">
+                  <div class="col-100"><a onclick="sgd.popupFriendList.loadFormPicker()" class="button button-fill button-big">Select other wooishui user</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="formSecond" data-page="form-second" data-nav="cancel" class="page cached">
+            <div class="page-content infinite-scroll">
+              <form id="debtForm" action="post">
+                <input type="hidden" name="itemid">
+                <input type="hidden" name="callback">
+                <div class="content-block">
+                  <div class="row debtType">
+                    <div class="col-33 left">
+                    </div>
+                    <div class="col-33 middle">
+                      <div class="row">
+                        <div class="col-33"><span class="icon-caret-left"></span></div>
+                        <div class="col-33"><span class="icon-banknote"></span></div>
+                        <div class="col-33"><span class="icon-caret-right"></span></div>
+                      </div>
+                    </div>
+                    <div class="col-33 right">
+                    </div>
+                  </div>
+                </div>
+                <div class="list-block">
+                  <ul>
+                    <li class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title label">AMOUNT</div>
+                        <div class="item-input">
+                          <input type="number" placeholder="AMOUNT" name="price">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="item-content align-top">
+                      <div class="item-inner">
+                        <div class="item-title label">DESCRIPTION</div>
+                        <div class="item-input">
+                          <input type="text" placeholder="DESCRIPTION" name="desc">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <input id="otherUserID" type="hidden">
+                <div class="content-block">
+                  <div class="row">
+                    <div class="col-100"><a href="javascript:void(0)" onclick="sgd.submitDebt()" class="button button-fill button-big color-red">CONFIRM</a></div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="inviteFriend" class="popup page navbar-fixed">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left"></div>
+          <div class="center">Invite Friend</div>
+          <div class="right"><a href="#" class="headerBtn black icon-remove close-popup"></a></div>
+        </div>
+      </div>
+      <div class="page-content">
+        <div class="infinite-scroll">
+          <div class="content-block">
+            <input type="text" placeholder="search" data-target="#nonRegFriend" class="friendListSearch">
+          </div>
+          <div id="nonRegFriendWrapper">
+            <div class="content-block-title">FACEBOOK FRIEND LIST</div>
+            <div class="list-block">
+              <ul id="nonRegFriend"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="friendList" class="popup page navbar-fixed">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="left"></div>
+          <div class="center">Friend list</div>
+          <div class="right"><a onclick="sgd.framework7.closeModal()" class="headerBtn black icon-remove"></a></div>
+        </div>
+      </div>
+      <div class="page-content infinite-scroll">
+        <div class="content-block">
+          <input type="text" placeholder="search" data-target="#regFriend" class="friendListSearch">
+        </div>
+        <div id="regFriendWrapper">
+          <div class="content-block-title">WOOISHUI USER</div>
+          <div class="list-block">
+            <ul id="regFriend"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="regFriendList" type="text/template">
+      <li class="item-content" data-userid='<%=id%>' class="close-popup">
+       <div class="item-media" style='background-image:url(http://graph.facebook.com/<%=id%>/picture)'></div>
+       <div class="item-inner">
+        <div class="item-title"><%=name%></div>
+       </div>
+      </li>
+    </script>
+    <script id="mainListTmpl" type="text/template">
+      <li class="item-content <%= (rejected) ? 'rejected' : '' %>">
+       <% if(id.indexOf('-') < 0){ %>
+        <div class="item-media" style="background-image:url(http://graph.facebook.com/<%=id%>/picture)"></div>
+       <% } %>
+       <div class="item-inner">
+        <div class="item-title"><%=name%></div>
+        <div class="item-label <%=(price > 0) ? 'color-green' : 'color-red'%>">$<%= (price % 1)? price.toFixed(2) : price %></div>
+       </div>
+       <input type="hidden" class="cid" value="<%=id%>"></input>
+      </li>
+    </script>
+    <script id="emptyDetail" type="text/template"><div class="list-block-label">it is empty</div></script>
+    <script id="detailTmpl" type="text/template">
+      <li class="swipeout" id="item_<%=_id%>">
+       <div class="item-link swipeout-content item-content">
+        <div class="item-inner">
+         <div class="item-title-row">
+          <div class="item-title"><%=moment(createdAt).format("YYYY-MM-DD HH:mm")%></div>
+          <div class="item-after <%=(price > 0) ? 'color-green' : 'color-red'%>">$<%= (price % 1)? price.toFixed(2) : price %></div>
+         </div>
+         <div class="item-subtitle">Debt owner: <%= creatorName %></div>
+         <div class="item-text"><%= (desc === '') ? 'NO DESCRIPTION' : desc %></div>
+        </div>
+       </div>
+       <% if(settlable){ %>
+        <div class="swipeout-actions-right">
+         <a href="javascript:void(0)" data-itemid="<%=_id%>" class="swipeout-delete removeBtn">REMOVE</a>
+        </div>
+       <% } else { %>
+        <div class="swipeout-actions-right">
+         <a href="javascript:void(0)" data-itemid="<%=_id%>" class="bg-red rejectBtn">REJECT</a>
+        </div>
+       <% } %>
+      </li>
+    </script>
+    <script id="rejectedTmpl" type="text/template">
+      <li class="swipeout" id="item_<%=_id%>">
+       <div class="item-link swipeout-content item-content">
+        <div class="item-inner">
+         <div class="item-title-row">
+          <div class="item-title"><%=moment(createdAt).format("YYYY-MM-DD HH:mm")%></div>
+          <div class="item-after <%=(price > 0) ? 'color-green' : 'color-red'%>">$<%= (price % 1)? price.toFixed(2) : price %></div>
+         </div>
+         <div class="item-subtitle">Debt owner: <%= creatorName %></div>
+         <div class="item-text"><%= (desc === '') ? 'NO DESCRIPTION' : desc %></div>
+         <div class="item-text">Reason: <%= reject %></div>
+        </div>
+       </div>
+       <% if(creator){ %>
+        <div class="swipeout-actions-right">
+         <a href="javascript:void(0)" data-itemid="<%=_id%>" class="bg-green rebornBtn">REBORN</a>
+        </div>
+       <% } else { %>
+        <div class="swipeout-actions-right">
+         <a href="javascript:void(0)" data-itemid="<%=_id%>" class="bg-green swipeout-delete acceptBtn">ACCEPT</a>
+        </div>
+       <% } %>
+      </li>
+    </script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+      
+    </script>
+    <script>
+      window.sgd = (window.sgd) ? window.sgd : {};
+      window.sgd.rootURL = 'http://www.wooishui.com';
+      window.sgd.fbAppID = '1386483598265163';
+      window.sgd.apiPrefix = 'http://192.168.1.62:5000';
+    </script>
+    <script src="cordova.js"></script>
+    <script src="plugins/com.phonegap.plugins.facebookconnect/facebookConnectPlugin.js"></script>
+    <script src="plugins/org.apache.cordova.console/www/console-via-logger.js"></script>
+    <!-- build:js(client) scripts/global.js-->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="bower_components/momentjs/min/moment.min.js"></script>
+    <script src="bower_components/framework7/dist/js/framework7.min.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild-->
+  </body>
+</html>

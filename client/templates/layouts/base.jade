@@ -1,0 +1,49 @@
+//- Base template
+//- All other templates should extend from this
+
+doctype html
+html(lang='en')
+    head
+        include ../components/meta.jade
+    body
+        <!--[if lte IE 7]>
+        <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/''>upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        div#layout.views
+            div.view.view-main
+                include ../components/header.jade
+
+                block introw
+
+                block content
+
+        block panel
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        script.
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+
+        script.
+            window.sgd = (window.sgd) ? window.sgd : {};
+            window.sgd.rootURL = 'http://www.wooishui.com';
+            window.sgd.fbAppID = '1386483598265163';
+            window.sgd.apiPrefix = 'http://192.168.1.62:5000';
+        script(src='cordova.js')
+        script(src='plugins/com.phonegap.plugins.facebookconnect/facebookConnectPlugin.js')
+        script(src='plugins/org.apache.cordova.console/www/console-via-logger.js')
+        // build:js(client) scripts/global.js
+        script(src='bower_components/jquery/dist/jquery.js')
+        script(src='bower_components/underscore/underscore-min.js')
+        script(src='bower_components/backbone/backbone.js')
+        script(src='bower_components/momentjs/min/moment.min.js')
+        script(src='bower_components/framework7/dist/js/framework7.min.js')
+        script(src='bower_components/requirejs/require.js')
+        script(src='scripts/config.js')
+        script(src='scripts/main.js')
+        // endbuild
+
