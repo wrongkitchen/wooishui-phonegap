@@ -1,6 +1,6 @@
 'use strict';
 
-define(function(){
+define(['CreditView', 'CreditDetailView', 'RejectedView'], function(_creditView, _creditDetailView, _rejectedView){
 	var _ctrl = Backbone.Model.extend({
 
 		credits: null,
@@ -13,250 +13,48 @@ define(function(){
 
 		rejectedView: null,
 
-		userUID: function(){ return sgd.userUID; },
-
-		urlPrefix: function(){ return sgd.apiPrefix; },
-
 		initialize: function(){
 			var _this = this;
-			var creditModel = Backbone.Model.extend();
-			var _credits = Backbone.Collection.extend({
-				model: creditModel,
-				url: _this.urlPrefix + '/api/debtsCredits'
-			});
 
+			var _credits = Backbone.Collection.extend({
+				url: sgd.apiPrefix + '/api/debtsCredits'
+			});
 			_this.credits = new _credits();
-			_this.credits.fetchDatas = function(){
-				this.fetch({ dataType: 'jsonp', data:{ uid: _this.userUID() } });
+			_this.credits.fetchDatas = function(pSetting){
+				this.fetch(_.extend({ 
+					dataType: 'jsonp', 
+					data:{ uid: sgd.userUID } 
+				}, pSetting));
 			};
 			_this.credits.fetchDatas();
 
-			var _creditsDetail = Backbone.Collection.extend({
-				model: creditModel
-			});
-			var creditsDetail = new _creditsDetail();
+
+			var creditsDetail = new Backbone.Collection();
+				creditsDetail.comparator = 'createdAt';
 			_this.creditsDetail = creditsDetail;
-			var rejectedDetail = new _creditsDetail();
+			var rejectedDetail = new Backbone.Collection();
+				rejectedDetail.comparator = 'createdAt';
 			_this.rejectedDetail = rejectedDetail;
-
-			var _creditView = Backbone.View.extend({
-				el: '#dataList',
-				mainListTemplate: _.template($("#mainListTmpl").html()),
-				events: {
-					'click .item-content' : 'showDetail'
-				},
-				initialize: function(options){
-					this.options = options;
-					this.listenTo(this.options.credits, 'all', this.render);
-				},
-				render: function(){
-					var _view = this;
-					var _credits = _view.options.credits;
-					var allData = new Backbone.Collection();
-					_view.$el.empty();
-					if(_credits.length){
-						_credits.each(function(credit){
-							var obj = credit.toJSON();
-							var checkDataModel = function(pObj, pIndexKey){
-								var dataModel = allData.where(pObj);
-								var _price = (pIndexKey == 'debtorsUID') ? obj.price : (obj.price * -1);
-								if(dataModel.length<=0){
-									var _name = (pIndexKey == 'debtorsUID') ? (obj.debtorsName) : (obj.creditorName);
-									allData.add({ 
-										id: obj[pIndexKey],
-										name: _name,
-										price: (obj.reject) ? 0 : _price,
-										rejected: !!(obj.reject)
-									});
-								} else {
-									var curPrice = dataModel[0].get('price');
-									dataModel[0].set({ price: curPrice + ((obj.reject) ? 0 : _price) });
-									if(obj.reject) dataModel[0].set({ rejected : true });
-								}
-							}
-							if(obj.creditorUID == _this.userUID()){
-								checkDataModel({ id: obj.debtorsUID }, 'debtorsUID');
-							} else {
-								checkDataModel({ id: obj.creditorUID }, 'creditorUID');
-							}
-						});
-						allData.each(function(pModel){
-							var obj = pModel.toJSON();
-							_view.$el.append(_view.mainListTemplate(obj));
-						});
-						$('#dataListError').hide();
-						$('#dataListWrap').show()
-					} else {
-						$('#dataListError').show();
-						$('#dataListWrap').hide();
-					}
-				},
-				showDetail: function(e){
-					var cid = $(e.currentTarget).find('.cid').val();
-					sgd.changeSection('detail', [cid]);
-				}
-			});
-			var _creditDetailView = Backbone.View.extend({
-				el: '#dataListDetail',
-				wrapper: '#dataListDetailWrap',
-				detailTemplate: _.template($("#detailTmpl").html()),
-				initialize: function(options){
-					this.options = options;
-					this.listenTo(this.options.credits, 'all', this.render);
-				},
-				events: {
-					'click .removeBtn' : 'settleItem',
-					'click .rejectBtn' : 'rejectItem'
-				},
-				render: function(){
-					var _view = this;
-					_view.$el.empty();
-					if(_view.options.credits.length){
-						$(_view.wrapper).show();
-						_view.options.credits.each(function(credit){
-							var obj = credit.toJSON();
-							if(obj.creditorUID == _this.userUID()){
-								obj.creatorName = (obj.creatorUID == _this.userUID()) ? obj.creditorName : obj.debtorsName;
-							} else {
-								obj.price *= -1;
-								obj.creatorName = (obj.creatorUID == _this.userUID()) ? obj.debtorsName : obj.creditorName;
-							}
-							obj.settlable = (obj.creatorUID == _this.userUID()) ? true : false;
-							_view.$el.append(_view.detailTemplate(obj));
-						});
-					} else {
-						$(_view.wrapper).hide();
-					}
-				},
-				settleItem: function(e){
-					var itemID = $(e.currentTarget).data('itemid');
-					var _view  = this;
-					var _credits = _view.options.credits;
-					$.ajax({
-						url: _this.urlPrefix + '/api/debtsRemove',
-						type: 'post',
-						data: { itemid: itemID },
-						success: function (data) {
-							if(data.status){
-								_credits.remove(_credits.where({ _id:itemID }));
-								if(_credits.length <= 0)
-									sgd.changeSection('home');
-							}
-						}
-					});
-				},
-				rejectItem: function(e){
-					var _view = this;
-					var itemID = $(e.currentTarget).data('itemid');
-					sgd.framework7.prompt('Why do u reject this debt?', 'Reject debt', function (value) {
-						if(value != ""){
-							$.ajax({
-								url: _this.urlPrefix + '/api/debtsReject',
-								type: 'post',
-								data: { itemid: itemID, reason: value },
-								success: function (data) {
-									if(data.status){
-										sgd.framework7.swipeoutDelete("#item_" + itemID, function(a,b,c){
-											var _item = _view.options.credits.where({ _id : itemID });
-											var _removed = _view.options.credits.remove(_item);
-											_removed[0].set({ reject:value });
-											rejectedDetail.add(_removed[0]);
-										});
-									}
-								}
-							});
-						}
-					});
-				}
-			});
-			var _rejectedView = Backbone.View.extend({
-				el: '#rejectListDetail',
-				wrapper: '#rejectListDetailWrap',
-				detailTemplate: _.template($("#rejectedTmpl").html()),
-				initialize: function(options){
-					this.options = options;
-					this.listenTo(this.options.credits, 'all', this.render);
-				},
-				events: {
-					'click .rebornBtn' : 'rebornItem',
-					'click .acceptBtn' : 'acceptItem'
-				},
-				rebornItem: function(e){
-					var itemID = $(e.currentTarget).data('itemid');
-					var _view  = this;
-					var _credits = _view.options.credits;
-					var _reborn = _credits.where({ _id:itemID });
-					var _r = _reborn[0].toJSON();
-					var isCreatorDebt = (_r.creatorUID === _r.debtorsUID);
-					if(isCreatorDebt)
-						$(".debtType .middle").addClass('creatorDebt');
-					else
-						$(".debtType .middle").removeClass('creatorDebt');
-					$("#debtForm input[name=price]").val(_r.price);
-					$("#debtForm input[name=desc]").val(_r.desc);
-					$("#otherUserID").val((isCreatorDebt) ? _r.creditorUID : _r.debtorsUID);
-					$("#otherUserName").val((isCreatorDebt) ? _r.creditorName : _r.debtorsName);
-					$("#debtForm input[name=itemid]").val(itemID);
-					$("#debtForm input[name=callback]").val((isCreatorDebt) ? _r.creditorUID : _r.debtorsUID);
-					sgd.changeSection('form-second', [], true);
-				},
-				acceptItem: function(e){
-					var itemID = $(e.currentTarget).data('itemid');
-					var _view  = this;
-					var _credits = _view.options.credits;
-					$.ajax({
-						url: _this.urlPrefix + '/api/debtsAccept',
-						type: 'post',
-						data: { itemid: itemID },
-						success: function (data) {
-							if(data.status){
-								var _remove = _credits.remove(_credits.where({ _id:itemID }));
-									_remove[0].set({ reject : "" });
-								creditsDetail.add(_remove[0]);
-							}
-						}
-					});
-				},
-				render: function(){
-					var _view = this;
-					_view.$el.empty();
-					if(_view.options.credits.length){
-						_view.options.credits.each(function(credit){
-							$(_view.wrapper).show();
-							var obj = credit.toJSON();
-							if(obj.creditorUID == _this.userUID()){
-								obj.creatorName = (obj.creatorUID == _this.userUID()) ? obj.creditorName : obj.debtorsName;
-							} else {
-								obj.price *= -1;
-								obj.creatorName = (obj.creatorUID == _this.userUID()) ? obj.debtorsName : obj.creditorName;
-							}
-							obj.creator = (obj.creatorUID == _this.userUID()) ? true : false;
-							_view.$el.append(_view.detailTemplate(obj));
-						});
-					} else {
-						$(_view.wrapper).hide();
-					}
-				}
-			});
-
-
 
 
 			var creditView = new _creditView({
 				credits: _this.credits
 			});
-			creditView.comparator = 'createdAt';
 
 			var creditDetailView = new _creditDetailView({
-				credits: creditsDetail
+				credits: creditsDetail,
+				rejectItemCallback: function(pObj){
+					rejectedDetail.add(pObj);
+				}
 			});
-			creditDetailView.comparator = 'createdAt';
 			_this.creditDetailView = creditDetailView;
 
 			var rejectedView = new _rejectedView({
-				credits: rejectedDetail
+				credits: rejectedDetail,
+				acceptItemCallback: function(pObj){
+					creditsDetail.add(pObj);
+				}
 			});
-			rejectedView.comparator = 'createdAt';
 			_this.rejectedView = rejectedView;
 		},
 

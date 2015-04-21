@@ -3,8 +3,6 @@
 define([], function(){
 	return Backbone.Model.extend({
 
-		friendsCache: null,
-
 		initialize: function(){
 			var sgd = (window.sgd) ? window.sgd : {};
 			if(sgd.fbAppID){
@@ -27,17 +25,12 @@ define([], function(){
 			}
 		},
 
-		getFriendList: function(pCallback, pReload){
-			if(this.friendsCache == null || pReload == true){
-				FB.api('/me/friends', {
-					access_token : sgd.accessToken
-				}, function(response) {
-					this.friendsCache = response;
-	 				pCallback(response);
-				});
-			} else {
-				return pCallback(this.friendsCache);
-			}
+		getFriendList: function(pCallback){
+			FB.api('/me/friends', {
+				access_token : sgd.accessToken
+			}, function(response) {
+ 				pCallback(response);
+			});
 		},
 		getInvitableList: function(pCallback){
 			FB.api('/me/taggable_friends', {

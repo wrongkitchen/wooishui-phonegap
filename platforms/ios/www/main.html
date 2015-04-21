@@ -13,9 +13,6 @@
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <!--[if lte IE 7]>
-    <p class='browsehappy'>You are using an <strong>outdated</strong> browser. Please <a href='http://browsehappy.com/''>upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
     <div id="layout" class="views">
       <div class="view view-main">
         <div id="header">
@@ -257,21 +254,12 @@
         </div>
        <% } %>
       </li>
-    </script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-      
     </script>
     <script>
       window.sgd = (window.sgd) ? window.sgd : {};
       window.sgd.rootURL = 'http://www.wooishui.com';
       window.sgd.fbAppID = '1386483598265163';
-      window.sgd.apiPrefix = 'http://localhost:5000';
+      window.sgd.apiPrefix = 'http://192.168.1.42:5000';
     </script>
     <script src="cordova.js"></script>
     <script src="plugins/com.phonegap.plugins.facebookconnect/facebookConnectPlugin.js"></script>
@@ -282,9 +270,7 @@
     <script src="bower_components/backbone/backbone.js"></script>
     <script src="bower_components/momentjs/min/moment.min.js"></script>
     <script src="bower_components/framework7/dist/js/framework7.min.js"></script>
-    <script src="bower_components/requirejs/require.js"></script>
-    <script src="scripts/config.js"></script>
-    <script src="scripts/main.js"></script>
     <!-- endbuild-->
+    <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
   </body>
 </html>

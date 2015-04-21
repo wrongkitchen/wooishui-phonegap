@@ -22,7 +22,7 @@ a {
   text-decoration: none;
   color: green;
   border-bottom: 1px dashed green; }
-  a.headerBtn {
+  a.headerBtn, a.rejectBtn, a.removeBtn {
     border: none; }
 
 .container {
@@ -98,7 +98,7 @@ a {
     text-align: left; }
 
 .facebookLogin {
-  background-image: url(../img/facebook-login.png);
+  background-image: url(../images/facebook-login.png);
   width: 202px;
   height: 45px;
   position: absolute;

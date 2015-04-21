@@ -4,6 +4,18 @@
 
 'use strict';
 
+require.config({
+    baseUrl: "scripts",
+    paths: {
+        "FacebookHelper": "class/FacebookHelper",
+        "PopupFriendList": "class/PopupFriendList",
+        "DebtsCredits": "class/DebtsCredits",
+        "CreditView": "class/CreditView",
+        "CreditDetailView": "class/CreditDetailView",
+        "RejectedView": "class/RejectedView"
+    }
+});
+
 require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl, dc){
 	
 	function getParameterByName(name) {

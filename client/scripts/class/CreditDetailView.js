@@ -23,6 +23,7 @@ define(function(){
 		render: function(){
 			var _view = this;
 			var _credits = _view.options.credits;
+
 			_view.$el.empty();
 
 			if(_credits.length){
@@ -36,7 +37,7 @@ define(function(){
 						obj.creatorName = (obj.creatorUID == sgd.userUID) ? obj.debtorsName : obj.creditorName;
 					}
 					obj.settlable = (obj.creatorUID == sgd.userUID) ? true : false;
-					_view.$el.append(_view.detailTemplate(obj));
+					_view.$el.prepend(_view.detailTemplate(obj));
 				});
 			} else {
 				$(_view.wrapper).hide();

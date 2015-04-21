@@ -4,6 +4,18 @@
 
 'use strict';
 
+require.config({
+    baseUrl: "scripts",
+    paths: {
+        "FacebookHelper": "class/FacebookHelper",
+        "PopupFriendList": "class/PopupFriendList",
+        "DebtsCredits": "class/DebtsCredits",
+        "CreditView": "class/CreditView",
+        "CreditDetailView": "class/CreditDetailView",
+        "RejectedView": "class/RejectedView"
+    }
+});
+
 require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl, dc){
 	
 	function getParameterByName(name) {
@@ -12,7 +24,6 @@ require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl
 			results = regex.exec(location.search);
 		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	};
-
 	var $$ = Dom7;
 	var _sgd = (window.sgd) ? window.sgd : {};
         _sgd.accessToken = getParameterByName('accessToken');
@@ -42,7 +53,6 @@ require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl
 				mainView.router.load({ pageName: 'form' });
 			}
 		});
-		
 		_sgd.route = new route();
 		Backbone.history.start();
 
@@ -156,7 +166,7 @@ require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl
 			if(_q.price != ''){
 				$.ajax({
 					url: _sgd.apiPrefix + '/api/debtsSubmit',
-					type: 'post',
+					dataType: 'jsonp',
 					data: _q,
 					success: function (data) {
 						if(data.status){
@@ -174,7 +184,9 @@ require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl
 				sgd.framework7.alert('Please fill in an amount', ['Amount missing']);
 			}
 		};
-		
+	
+
+
 	$$('.menu-link').on('click', function () {
 		var buttons = [
 			{
@@ -193,7 +205,9 @@ require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl
 			{
 				text: 'Sign Out',
 				onClick: function () {
-					window.location.href = "/logout";
+					FB.logout(function(response) {
+						window.location.href = "/";
+					});
 				}
 			}
 		];
@@ -205,8 +219,8 @@ require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl
 			if(fromUID && pToUID){
 				$.ajax({
 					url: _sgd.apiPrefix + '/api/connectUser',
-					type: 'post',
-					data: { from: fromUID, to:pToUID },
+					dataType: 'jsonp',
+					data: { from: fromUID, to:pToUID, uid: sgd.userUID },
 					success: function (data) {
 						if(data.status){
 							_sgd.changeSection('home');

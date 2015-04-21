@@ -30,15 +30,16 @@ define(['CreditView', 'CreditDetailView', 'RejectedView'], function(_creditView,
 
 
 			var creditsDetail = new Backbone.Collection();
+				creditsDetail.comparator = 'createdAt';
 			_this.creditsDetail = creditsDetail;
 			var rejectedDetail = new Backbone.Collection();
+				rejectedDetail.comparator = 'createdAt';
 			_this.rejectedDetail = rejectedDetail;
 
 
 			var creditView = new _creditView({
 				credits: _this.credits
 			});
-			creditView.comparator = 'createdAt';
 
 			var creditDetailView = new _creditDetailView({
 				credits: creditsDetail,
@@ -46,7 +47,6 @@ define(['CreditView', 'CreditDetailView', 'RejectedView'], function(_creditView,
 					rejectedDetail.add(pObj);
 				}
 			});
-			creditDetailView.comparator = 'createdAt';
 			_this.creditDetailView = creditDetailView;
 
 			var rejectedView = new _rejectedView({
@@ -55,7 +55,6 @@ define(['CreditView', 'CreditDetailView', 'RejectedView'], function(_creditView,
 					creditsDetail.add(pObj);
 				}
 			});
-			rejectedView.comparator = 'createdAt';
 			_this.rejectedView = rejectedView;
 		},
 

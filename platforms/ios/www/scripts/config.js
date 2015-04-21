@@ -1,8 +1,11 @@
 require.config({
-    baseUrl: "scripts",
+    baseUrl: "/scripts",
     paths: {
         "FacebookHelper": "class/FacebookHelper",
         "PopupFriendList": "class/PopupFriendList",
-        "DebtsCredits": "class/DebtsCredits"
+        "DebtsCredits": "class/DebtsCredits",
+        "CreditView": "class/CreditView",
+        "CreditDetailView": "class/CreditDetailView",
+        "RejectedView": "class/RejectedView"
     }
 });

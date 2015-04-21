@@ -8,7 +8,7 @@
 var config = {
     client: 'client',
     staticServer: 'www',
-    dist: 'dist',
+    dist: 'www',
     server: 'server'
 };
 

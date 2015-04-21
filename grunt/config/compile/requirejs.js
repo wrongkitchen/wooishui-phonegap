@@ -8,16 +8,22 @@ var taskConfig = function(grunt) {
     grunt.config.set('requirejs', {
         dist: {
             options: {
-                name: 'main',
                 baseUrl: '<%= yeogurt.client %>/scripts/',
-                mainConfigFile: '<%= yeogurt.client %>/scripts/main.js',
-                out: '<%= yeogurt.dist %>/scripts/main.js',
-                optimize: 'uglify2',generateSourceMaps: true,
-                preserveLicenseComments: false
+                mainConfigFile: '<%= yeogurt.client %>/scripts/config.js',
+                dir: '<%= yeogurt.dist %>/scripts/',
+                
+                generateSourceMaps: false,
+                preserveLicenseComments: false,
+                modules: [
+                    { name: 'main' },
+                    { name: 'beforeLogin' }
+                ]
             }
         }
     });
 
 };
-
+// optimize: 'uglify2',
+// name: 'main',
+// out: '<%= yeogurt.dist %>/scripts/main.js',
 module.exports = taskConfig;
