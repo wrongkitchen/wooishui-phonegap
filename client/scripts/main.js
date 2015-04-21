@@ -192,7 +192,7 @@ require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl
 			{
 				text: 'Invite friend',
 				onClick: function () {
-					FB.ui({
+					facebookConnectPlugin.showDialog({
 						method: 'apprequests',
 						title : 'wooishui',
 						message: "Lets use wooishui to maintain your debts!",
@@ -205,9 +205,11 @@ require(["FacebookHelper", "PopupFriendList", "DebtsCredits"], function(fbh, pfl
 			{
 				text: 'Sign Out',
 				onClick: function () {
-					FB.logout(function(response) {
-						window.location.href = "/";
-					});
+					facebookConnectPlugin.logout(function(){
+						window.location.href = "index.html";
+					}, function(){
+						_sgd.framework7.alert('Logout fail', ['Please try again']);
+					})
 				}
 			}
 		];
