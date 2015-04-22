@@ -1,7 +1,7 @@
 html, body{ width:100%; height:100%; padding:0; margin:0; }
 body{ 
 	font-family: 'Quicksand', sans-serif; font-size:$font-size-base; position:relative; 
-	-webkit-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%; background-color: $main-theme-color;
 	&.unauthorized{ 
 		#footer{ 
 			color:#FFF; text-align: center;

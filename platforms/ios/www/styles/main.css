@@ -8,7 +8,8 @@ body {
   font-family: 'Quicksand', sans-serif;
   font-size: 14px;
   position: relative;
-  -webkit-text-size-adjust: 100%; }
+  -webkit-text-size-adjust: 100%;
+  background-color: #78FF8D; }
   body.unauthorized #footer {
     color: #FFF;
     text-align: center; }
@@ -106,6 +107,9 @@ a {
   margin-top: 22px;
   left: 50%;
   margin-left: -101px; }
+
+#beforeLogin {
+  display: none; }
 
 .gradient-pattern {
   box-sizing: content-box;
