@@ -9,7 +9,7 @@ var taskConfig = function(grunt) {
         dist: {
             options: {
                 baseUrl: '<%= yeogurt.client %>/scripts/',
-                mainConfigFile: '<%= yeogurt.client %>/scripts/config.js',
+                mainConfigFile: '<%= yeogurt.client %>/scripts/main.js',
                 dir: '<%= yeogurt.dist %>/scripts/',
                 
                 generateSourceMaps: false,

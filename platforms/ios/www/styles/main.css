@@ -1,3 +1,97 @@
+@font-face {
+  font-family: 'Lobster';
+  src: url('fonts/lobster/lobster_1.3-webfont.eot');
+  src: url('fonts/lobster/lobster_1.3-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/lobster/lobster_1.3-webfont.woff2') format('woff2'), url('fonts/lobster/lobster_1.3-webfont.woff') format('woff'), url('fonts/lobster/lobster_1.3-webfont.ttf') format('truetype'), url('fonts/lobster/lobster_1.3-webfont.svg#lobster_1.3regular') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "wooishui";
+  src: url("fonts/wooishui/fonts/wooishui.eot");
+  src: url("fonts/wooishui/fonts/wooishui.eot?#iefix") format("embedded-opentype"), url("fonts/wooishui/fonts/wooishui.woff") format("woff"), url("fonts/wooishui/fonts/wooishui.ttf") format("truetype"), url("fonts/wooishui/fonts/wooishui.svg#wooishui") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('fonts/quicksand/quicksand_bold-webfont.eot');
+  src: url('fonts/quicksand/quicksand_bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/quicksand/quicksand_bold-webfont.woff2') format('woff2'), url('fonts/quicksand/quicksand_bold-webfont.woff') format('woff'), url('fonts/quicksand/quicksand_bold-webfont.ttf') format('truetype'), url('fonts/quicksand/quicksand_bold-webfont.svg#quicksandbold') format('svg');
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('fonts/quicksand/quicksand_book-webfont.eot');
+  src: url('fonts/quicksand/quicksand_book-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/quicksand/quicksand_book-webfont.woff2') format('woff2'), url('fonts/quicksand/quicksand_book-webfont.woff') format('woff'), url('fonts/quicksand/quicksand_book-webfont.ttf') format('truetype'), url('fonts/quicksand/quicksand_book-webfont.svg#quicksandbook') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('fonts/quicksand/quicksand_light-webfont.eot');
+  src: url('fonts/quicksand/quicksand_light-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/quicksand/quicksand_light-webfont.woff2') format('woff2'), url('fonts/quicksand/quicksand_light-webfont.woff') format('woff'), url('fonts/quicksand/quicksand_light-webfont.ttf') format('truetype'), url('fonts/quicksand/quicksand_light-webfont.svg#quicksandlight') format('svg');
+  font-weight: thin;
+  font-style: normal; }
+
+[data-icon]:before {
+  font-family: "wooishui" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "wooishui" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-plus:before {
+  content: "r"; }
+
+.icon-remove:before {
+  content: "m"; }
+
+.icon-share-square:before {
+  content: "s"; }
+
+.icon-banknote:before {
+  content: "t"; }
+
+.icon-caret-left:before {
+  content: "u"; }
+
+.icon-caret-right:before {
+  content: "v"; }
+
+.icon-page-search:before {
+  content: "w"; }
+
+.icon-exclamation-triangle:before {
+  content: "x"; }
+
+.icon-three-bars:before {
+  content: "a"; }
+
+.icon-user:before {
+  content: "b"; }
+
+.icon-dot-3:before {
+  content: "c"; }
+
+.icon-share:before {
+  content: "d"; }
+
 html, body {
   width: 100%;
   height: 100%;
@@ -219,6 +313,20 @@ p.or {
 #dataListDetailWrap, #rejectListDetailWrap {
   display: none; }
 
+#dataListDetailWrap .content-block-title {
+  padding: 10px 0;
+  overflow: visible; }
+  #dataListDetailWrap .content-block-title .icon-user, #dataListDetailWrap .content-block-title .icon-plus, #dataListDetailWrap .content-block-title .icon-share {
+    position: absolute;
+    font-size: 20px;
+    top: 8px; }
+  #dataListDetailWrap .content-block-title .icon-plus {
+    right: -5px; }
+  #dataListDetailWrap .content-block-title .icon-share {
+    right: 35px; }
+  #dataListDetailWrap .content-block-title .icon-user {
+    right: 75px; }
+
 #dataListError, #dataListDetailError {
   text-align: center;
   display: none; }
@@ -244,11 +352,4 @@ p.or {
   top: 20px;
   right: 10px;
   z-index: 10; }
-  #connectUser:before {
-    content: "b";
-    font-family: wooishui;
-    position: relative;
-    top: 4px;
-    font-size: 1.6em;
-    right: 5px; }
 /*# sourceMappingURL=main.css.map */

@@ -5,10 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>wooishui</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://www.google-analytics.com" rel="dns-prefetch">
-    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
-    <link href="https://fontastic.s3.amazonaws.com/CWNp47vRfsX6Apg6FPgnZg/icons.css" rel="stylesheet">
     <link href="bower_components/framework7/dist/css/framework7.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
   </head>
@@ -44,13 +40,16 @@
             </div>
           </div>
           <div data-page="detail" data-nav="back" class="page cached">
-            <div id="connectUser">Connect wooishui user</div>
             <div class="page-content infinite-scroll">
               <div id="dataListDetailError" class="content-block-title"><span class="icon-page-search"></span>
                 <div class="txt">Cannot find any debt of this user</div>
               </div>
               <div id="dataListDetailWrap">
-                <div class="content-block-title">Debts detail</div>
+                <div class="content-block-title">Debts detail
+                  <div class="icon-plus"></div>
+                  <div class="icon-share"></div>
+                  <div id="connectUser" class="icon-user"></div>
+                </div>
                 <div class="list-block media-list">
                   <ul id="dataListDetail"></ul>
                 </div>

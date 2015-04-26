@@ -96,6 +96,28 @@ define(['CreditView', 'CreditDetailView', 'RejectedView'], function(_creditView,
 			}
 		},
 
+		getUserByUID: function(pUID){
+			var result = this.credits.filter(function(pObj){
+				return (pObj.get('creatorUID') == pUID || pObj.get('debtorsUID') == pUID);
+			});
+			return (result.length > 0) ? result[0] : false;
+		},
+
+		getSumByUID: function(pUID){
+			var debts = this.credits.filter(function(pObj){
+				return (pObj.get('creatorUID') == pUID || pObj.get('debtorsUID') == pUID);
+			});
+			var sum = 0;
+			for(var i=0; i<debts.length; i++){
+				var debt = debts[i];
+				if(debt.get('creatorUID') === pUID)
+					sum -= debt.get('price');
+				else 
+					sum += debt.get('price');
+			}
+			return sum;
+		},
+
 		clearDetailDatas: function(){
 			this.creditDetailView.$el.empty();
 			this.rejectedView.$el.empty();

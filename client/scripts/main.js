@@ -92,6 +92,8 @@ require(['FacebookHelper', 'PopupFriendList', 'DebtsCredits'], function(fbh, pfl
 					} else{
 						$('#connectUser').hide().data('uid', '');
 					}
+					$("#dataListDetailWrap .icon-plus").data('uid', page.query.uid);
+					$("#dataListDetailWrap .icon-share").data('uid', page.query.uid);
 					_sgd.debtsCredits.loadDetailByUID(page.query.uid);
 				} else {
 					window.location.hash = '';
@@ -106,7 +108,7 @@ require(['FacebookHelper', 'PopupFriendList', 'DebtsCredits'], function(fbh, pfl
 			else
 				$('#header').removeClass();
 			if(page.name == 'form-second'){
-				if($('#otherUserID').val()){
+				if($('#otherUserID').val() && $('#otherUserID').val().indexOf('-') === -1){
 					$('.debtType .right').html('<img src=\"http://graph.facebook.com/' + $('#otherUserID').val() + '/picture\" alt=\"\" />');
 				} else if($('#otherUserName').val()){
 					$('.debtType .right').html('<span>' + $('#otherUserName').val() + '</span>');
@@ -152,7 +154,6 @@ require(['FacebookHelper', 'PopupFriendList', 'DebtsCredits'], function(fbh, pfl
 				desc: $('#debtForm input[name=desc]').val(),
 				otherUserID: $('#otherUserID').val(),
 				otherUserName: $('#otherUserName').val(),
-				itemid: $('#debtForm input[name=itemid]').val(),
 				curUser: sgd.userUID
 			};
 			if(_q.price != ''){
@@ -230,6 +231,31 @@ require(['FacebookHelper', 'PopupFriendList', 'DebtsCredits'], function(fbh, pfl
 				});
 			}
 		});
+	});
+	$("#dataListDetailWrap .icon-share").on('click', function(){
+		var _this = this;
+		var buttons = [
+			{
+				text: 'whatsapp',
+				onClick: function () {
+					var sum = _sgd.debtsCredits.getSumByUID($(_this).data('uid'));
+					console.log(sum);
+					if(sum > 0)
+						window.location.href = "whatsapp://send?text=Hello, you own me $" + Math.abs(sum);
+					else
+						window.location.href = "whatsapp://send?text=Hello, I own you $" + Math.abs(sum);
+				}
+			}
+		];
+		_sgd.framework7.actions(buttons);
+	});
+	$("#dataListDetailWrap .icon-plus").on('click', function(){
+		var _userUID = $(this).data('uid');
+		var _userData = _sgd.debtsCredits.getUserByUID($(this).data('uid')).toJSON();
+		var _userName = (_userData.debtorsUID === _userUID) ? _userData.debtorsName : _userData.creditorName;
+		$('input#otherUserName').val(_userName);
+		$('input#otherUserID').val(_userUID);
+		_sgd.changeSection('form-second', false, true);
 	});
 	$('.debtType .left').on('click', function(){
 		$('.debtType .middle').addClass('creatorDebt');

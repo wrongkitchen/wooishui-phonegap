@@ -86,9 +86,18 @@ p.or{ text-align: center; }
 	}
 	&.rejected{ 
 		.item-label{ &:before{ opacity: 1; } }
-	}
+	} 
 }
 #dataListDetailWrap, #rejectListDetailWrap{ display:none; }
+#dataListDetailWrap{
+	.content-block-title{
+		padding: 10px 0; overflow:visible;
+		.icon-user, .icon-plus, .icon-share{ position: absolute; font-size: 20px; top: 8px; }
+		.icon-plus{ right: -5px; }
+		.icon-share{ right: 35px; }
+		.icon-user{ right: 75px; }
+	}
+}
 #dataListError, #dataListDetailError{ 
 	text-align: center; display:none;
 	.icon-page-search{ font-size:3em; }
@@ -100,7 +109,4 @@ p.or{ text-align: center; }
 		&:after{ content: "a"; font-family: wooishui; position: absolute; right: 10px; color: #000; top: 10px; }
 	}
 }
-#connectUser{
-	position: absolute; top: 20px; right: 10px; z-index:10;
-	&:before{ content: "b"; font-family: wooishui; position: relative; top: 4px; font-size: 1.6em; right: 5px; }
-}
+#connectUser{ position: absolute; top: 20px; right: 10px; z-index:10; }
