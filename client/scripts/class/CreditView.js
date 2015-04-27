@@ -15,6 +15,7 @@ define(function(){
 			var _view = this;
 			var _credits = _view.options.credits;
 			var allData = new Backbone.Collection();
+				allData.comparator = 'name';
 			var userUID = sgd.userUID;
 			
 			_view.$el.empty();
