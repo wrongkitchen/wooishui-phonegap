@@ -38,7 +38,7 @@
 	.headerBtn{
 		font-size: 24px; height: 100%; line-height: 50px; z-index: 10;
 	    border: none; text-align: center; color: #FFF; margin:0;
-	    display: block;
+	    display: block; font-weight: normal;
 	    &.txt{ font-size:18px; }
 	    &.black{ color:#000; }
 	}

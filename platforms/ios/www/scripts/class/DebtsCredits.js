@@ -110,10 +110,12 @@ define(['CreditView', 'CreditDetailView', 'RejectedView'], function(_creditView,
 			var sum = 0;
 			for(var i=0; i<debts.length; i++){
 				var debt = debts[i];
-				if(debt.get('creatorUID') === pUID)
-					sum -= debt.get('price');
-				else 
-					sum += debt.get('price');
+				if(!debt.get('reject') && !debt.get('hidden')){
+					if(debt.get('creatorUID') === pUID)
+						sum -= debt.get('price');
+					else 
+						sum += debt.get('price');
+				}
 			}
 			return sum;
 		},

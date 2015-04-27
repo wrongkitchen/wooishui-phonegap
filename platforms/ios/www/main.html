@@ -94,7 +94,7 @@
           </div>
           <div id="formSecond" data-page="form-second" data-nav="cancel" class="page cached">
             <div class="page-content infinite-scroll">
-              <form id="debtForm" action="post">
+              <form id="debtForm" action="get">
                 <input type="hidden" name="itemid">
                 <input type="hidden" name="callback">
                 <div class="content-block">
@@ -254,9 +254,8 @@
     </script>
     <script>
       window.sgd = (window.sgd) ? window.sgd : {};
-      window.sgd.rootURL = 'http://www.wooishui.com';
       window.sgd.fbAppID = '1386483598265163';
-      window.sgd.apiPrefix = 'http://192.168.8.5:5000';
+      window.sgd.apiPrefix = 'https://wooishui.herokuapp.com';
     </script>
     <script src="cordova.js"></script>
     <script src="plugins/com.phonegap.plugins.facebookconnect/facebookConnectPlugin.js"></script>

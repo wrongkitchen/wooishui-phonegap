@@ -53,6 +53,8 @@ require(['FacebookHelper', 'PopupFriendList', 'DebtsCredits'], function(fbh, pfl
 		_sgd.resetForm = function(){
 			$('#otherUserID').val('');
 			$('#otherUserName').val('');
+			$("#debtForm input[name=itemid]").val('');
+			$("#debtForm input[name=callback]").val('');
 			$('#debtForm')[0].reset();
 		};
 
@@ -154,6 +156,7 @@ require(['FacebookHelper', 'PopupFriendList', 'DebtsCredits'], function(fbh, pfl
 				desc: $('#debtForm input[name=desc]').val(),
 				otherUserID: $('#otherUserID').val(),
 				otherUserName: $('#otherUserName').val(),
+				itemid: $("#debtForm input[name=itemid]").val(),
 				curUser: sgd.userUID
 			};
 			if(_q.price != ''){
@@ -236,22 +239,24 @@ require(['FacebookHelper', 'PopupFriendList', 'DebtsCredits'], function(fbh, pfl
 		var _this = this;
 		var getMessage = function(pSum){
 			if(pSum > 0)
-				return "Hello, you own me &" + Math.abs(pSum);
+				return "Hello, you own me $" + Math.abs(pSum);
 			else 
-				return "Hello, I own you &" + Math.abs(pSum);
+				return "Hello, I own you $" + Math.abs(pSum);
 		};
 		var buttons = [
 			{
 				text: 'Line',
 				onClick: function () {
 					var sum = _sgd.debtsCredits.getSumByUID($(_this).data('uid'));
+					console.log("line://msg/text/" + getMessage(sum));
 					window.location.href = "line://msg/text/" + getMessage(sum);
 				}
 			},
 			{
-				text: 'whatsapp',
+				text: 'Whatsapp',
 				onClick: function () {
 					var sum = _sgd.debtsCredits.getSumByUID($(_this).data('uid'));
+					console.log("line://msg/text/" + getMessage(sum));
 					window.location.href = "whatsapp://send?text=" + getMessage(sum);
 				}
 			}

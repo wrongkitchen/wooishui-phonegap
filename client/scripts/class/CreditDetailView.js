@@ -57,7 +57,11 @@ define(function(){
 				data: { itemid: itemID, uid: sgd.userUID },
 				success: function (data) {
 					if(data.status){
-						_credits.remove(_credits.where({ _id: itemID }));
+						var removed = _credits.where({ _id: itemID });
+						_.each(removed, function(pObj){
+							pObj.set({ hidden: true });
+						});
+						_credits.remove(removed);
 						if(_credits.length <= 0)
 							sgd.changeSection('home');
 					}

@@ -99,9 +99,10 @@ html, body {
   margin: 0; }
 
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Helvetica', Tahoma, 'Geneva', sans-serif;
   font-size: 14px;
   position: relative;
+  font-weight: lighter;
   -webkit-text-size-adjust: 100%;
   background-color: #78FF8D; }
   body.unauthorized #footer {
@@ -119,6 +120,9 @@ a {
   border-bottom: 1px dashed green; }
   a.headerBtn, a.rejectBtn, a.removeBtn, a.rebornBtn {
     border: none; }
+
+input {
+  font-weight: lighter; }
 
 .container {
   margin: 0 auto;
@@ -239,7 +243,8 @@ a {
   text-align: center;
   color: #FFF;
   margin: 0;
-  display: block; }
+  display: block;
+  font-weight: normal; }
   #header .headerBtn.txt {
     font-size: 18px; }
   #header .headerBtn.black {
