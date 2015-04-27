@@ -234,16 +234,25 @@ require(['FacebookHelper', 'PopupFriendList', 'DebtsCredits'], function(fbh, pfl
 	});
 	$("#dataListDetailWrap .icon-share").on('click', function(){
 		var _this = this;
+		var getMessage = function(pSum){
+			if(pSum > 0)
+				return "Hello, you own me &" + Math.abs(pSum);
+			else 
+				return "Hello, I own you &" + Math.abs(pSum);
+		};
 		var buttons = [
+			{
+				text: 'Line',
+				onClick: function () {
+					var sum = _sgd.debtsCredits.getSumByUID($(_this).data('uid'));
+					window.location.href = "line://msg/text/" + getMessage(sum);
+				}
+			},
 			{
 				text: 'whatsapp',
 				onClick: function () {
 					var sum = _sgd.debtsCredits.getSumByUID($(_this).data('uid'));
-					console.log(sum);
-					if(sum > 0)
-						window.location.href = "whatsapp://send?text=Hello, you own me $" + Math.abs(sum);
-					else
-						window.location.href = "whatsapp://send?text=Hello, I own you $" + Math.abs(sum);
+					window.location.href = "whatsapp://send?text=" + getMessage(sum);
 				}
 			}
 		];
