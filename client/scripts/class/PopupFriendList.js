@@ -1,6 +1,6 @@
 'use strict';
 
-define([], function(){
+define('PopupFriendList', function(){
 	return Backbone.Model.extend({
 
 		invitableFds: null,

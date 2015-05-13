@@ -1,6 +1,6 @@
 'use strict';
 
-define(function(){
+define('RejectedView', function(){
 	return Backbone.View.extend({
 		el: '#rejectListDetail',
 		wrapper: '#rejectListDetailWrap',

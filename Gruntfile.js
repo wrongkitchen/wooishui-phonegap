@@ -7,8 +7,8 @@
 // - dist (location for files created when running 'grunt' or 'grunt build')
 var config = {
     client: 'client',
-    staticServer: 'www',
-    dist: 'dist',
+    staticServer: '.serve',
+    dist: 'www',
     server: 'server'
 };
 

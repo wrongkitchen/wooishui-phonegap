@@ -11,8 +11,9 @@ var taskConfig = function(grunt) {
             'imagemin:dist',
             'svgmin:dist',
             'jade:dist',
-            'sass:dist',
-            'requirejs'
+            'sass:dist'
+            // ,
+            // 'requirejs'
         ]
     });
 

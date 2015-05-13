@@ -1,6 +1,6 @@
 'use strict';
 
-define(function(){
+define('CreditDetailView', function(){
 
 	return Backbone.View.extend({
 		

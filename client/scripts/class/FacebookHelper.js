@@ -1,6 +1,6 @@
 'use strict';
 
-define([], function(){
+define('FacebookHelper', function(){
 	return Backbone.Model.extend({
 
 		initialize: function(){

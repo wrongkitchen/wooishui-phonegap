@@ -1,6 +1,6 @@
 'use strict';
 
-define(['CreditView', 'CreditDetailView', 'RejectedView'], function(_creditView, _creditDetailView, _rejectedView){
+define('DebtsCredits', ['CreditView', 'CreditDetailView', 'RejectedView'], function(_creditView, _creditDetailView, _rejectedView){
 	var _ctrl = Backbone.Model.extend({
 
 		credits: null,

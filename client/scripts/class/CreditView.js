@@ -1,6 +1,6 @@
 'use strict';
 
-define(function(){
+define('CreditView', function(){
 	return Backbone.View.extend({
 		el: '#dataList',
 		mainListTemplate: _.template($("#mainListTmpl").html()),
