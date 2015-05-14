@@ -1,0 +1,23 @@
+dependencies: \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/wooishui/Plugins/org.apache.cordova.console/CDVLogger.m \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/wooishui/Plugins/org.apache.cordova.console/CDVLogger.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVPlugin.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVPluginResult.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/NSMutableArray+QueueAdditions.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVCommandDelegate.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVAvailability.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVInvokedUrlCommand.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDV.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVViewController.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVCommandQueue.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVWhitelist.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVScreenOrientationDelegate.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVURLProtocol.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVDebug.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVLocalStorage.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVTimer.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/NSArray+Comparisons.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/NSData+Base64.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/NSDictionary+Extensions.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/UIDevice+Extensions.h \
+  /Users/sc17temp/Sites/wooishui-phonegap/platforms/ios/build/emulator/include/Cordova/CDVJSON.h

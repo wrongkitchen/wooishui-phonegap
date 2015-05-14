@@ -29,6 +29,22 @@
                         {
                             "xml": "true",
                             "count": 1
+                        },
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "Storekit.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "CoreLocation.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
                         }
                     ]
                 }
@@ -65,6 +81,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"PushNotification\"><param name=\"ios-package\" value=\"PushNotification\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         }
@@ -75,19 +95,29 @@
                 "parents": {
                     "FacebookAppID": [
                         {
-                            "xml": "<string>1386483598265163</string>",
+                            "xml": "<string>$APP_ID</string>",
                             "count": 1
                         }
                     ],
                     "FacebookDisplayName": [
                         {
-                            "xml": "<string>wooishui</string>",
+                            "xml": "<string>$APP_NAME</string>",
                             "count": 1
                         }
                     ],
                     "CFBundleURLTypes": [
                         {
-                            "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>fb1386483598265163</string></array></dict></array>",
+                            "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>fb$APP_ID</string></array></dict></array>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "undefined": {
+                "parents": {
+                    "undefined": [
+                        {
+                            "xml": "<access origin=\"*.pushwoosh.com\" />",
                             "count": 1
                         }
                     ]
@@ -97,8 +127,9 @@
     },
     "installed_plugins": {
         "com.phonegap.plugins.facebookconnect": {
-            "APP_ID": "1386483598265163",
-            "APP_NAME": "wooishui",
+            "PACKAGE_NAME": "com.sgd.wooishui"
+        },
+        "com.pushwoosh.plugins.pushwoosh": {
             "PACKAGE_NAME": "com.sgd.wooishui"
         },
         "org.apache.cordova.console": {
