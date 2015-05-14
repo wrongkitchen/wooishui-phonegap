@@ -28,5 +28,4 @@ node_modules
 .lock-wscript
 .serve
 www
-platforms/ios/www
-platforms/android/assets/www
+platforms
