@@ -1,0 +1,69 @@
+script#regFriendList(type="text/template").
+	<li class="item-content" data-userid='<%=id%>' class="close-popup">
+		<div class="item-media" style='background-image:url(http://graph.facebook.com/<%=id%>/picture)'></div>
+		<div class="item-inner">
+			<div class="item-title"><%=name%></div>
+		</div>
+	</li>
+
+script#mainListTmpl(type="text/template").
+	<li class="item-content <%= (rejected) ? 'rejected' : '' %>">
+		<% if(id.indexOf('-') < 0){ %>
+			<div class="item-media" style="background-image:url(http://graph.facebook.com/<%=id%>/picture)"></div>
+		<% } %>
+		<div class="item-inner">
+			<div class="item-title"><%=name%></div>
+			<div class="item-label <%=(price > 0) ? 'color-green' : 'color-red'%>">$<%= (price % 1)? price.toFixed(2) : price %></div>
+		</div>
+		<input type="hidden" class="cid" value="<%=id%>"></input>
+	</li>
+
+script#emptyDetail(type="text/template").
+	<div class="list-block-label">it is empty</div>
+
+script#detailTmpl(type="text/template").
+	<li class="swipeout" id="item_<%=_id%>">
+		<div class="item-link swipeout-content item-content">
+			<div class="item-inner">
+				<div class="item-title-row">
+					<div class="item-title"><%=moment(createdAt).format("YYYY-MM-DD HH:mm")%></div>
+					<div class="item-after <%=(price > 0) ? 'color-green' : 'color-red'%>">$<%= (price % 1)? price.toFixed(2) : price %></div>
+				</div>
+				<div class="item-subtitle">Debt owner: <%= creatorName %></div>
+				<div class="item-text"><%= (desc === '') ? 'NO DESCRIPTION' : desc %></div>
+			</div>
+		</div>
+		<% if(settlable){ %>
+			<div class="swipeout-actions-right">
+				<a href="javascript:void(0)" data-itemid="<%=_id%>" class="swipeout-delete removeBtn">REMOVE</a>
+			</div>
+		<% } else { %>
+			<div class="swipeout-actions-right">
+				<a href="javascript:void(0)" data-itemid="<%=_id%>" class="bg-red rejectBtn">REJECT</a>
+			</div>
+		<% } %>
+	</li>
+	
+script#rejectedTmpl(type="text/template").
+	<li class="swipeout" id="item_<%=_id%>">
+		<div class="item-link swipeout-content item-content">
+			<div class="item-inner">
+				<div class="item-title-row">
+					<div class="item-title"><%=moment(createdAt).format("YYYY-MM-DD HH:mm")%></div>
+					<div class="item-after <%=(price > 0) ? 'color-green' : 'color-red'%>">$<%= (price % 1)? price.toFixed(2) : price %></div>
+				</div>
+				<div class="item-subtitle">Debt owner: <%= creatorName %></div>
+				<div class="item-text"><%= (desc === '') ? 'NO DESCRIPTION' : desc %></div>
+				<div class="item-text">Reason: <%= reject %></div>
+			</div>
+		</div>
+		<% if(creator){ %>
+			<div class="swipeout-actions-right">
+				<a href="javascript:void(0)" data-itemid="<%=_id%>" class="bg-green rebornBtn">REBORN</a>
+			</div>
+		<% } else { %>
+			<div class="swipeout-actions-right">
+				<a href="javascript:void(0)" data-itemid="<%=_id%>" class="bg-green swipeout-delete acceptBtn">ACCEPT</a>
+			</div>
+		<% } %>
+	</li>

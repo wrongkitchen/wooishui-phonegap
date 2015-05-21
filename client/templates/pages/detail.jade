@@ -1,0 +1,17 @@
+div.page.navbar-fixed.cached(data-page="detail")
+	+navbar('back')
+	div.page-content.infinite-scroll 
+		div.content-block-title#dataListDetailError 
+			span.icon-page-search
+			div.txt Cannot find any debt of this user
+		div#dataListDetailWrap
+			div.content-block-title Debts detail
+				div.icon-plus
+				div.icon-share
+				div.icon-user#connectUser
+			div.list-block.media-list
+				ul#dataListDetail
+		div#rejectListDetailWrap
+			div.content-block-title Rejected Debts
+			div.list-block.media-list
+				ul#rejectListDetail

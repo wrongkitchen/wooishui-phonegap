@@ -1,0 +1,33 @@
+div#inviteFriend.popup.page.navbar-fixed
+	div.navbar
+		div.navbar-inner
+			div.left
+			div.center Invite Friend
+			div.right 
+				a.headerBtn.black.icon-remove.close-popup(href="#")
+	
+	div.page-content
+		div.infinite-scroll
+			div.content-block
+				input.friendListSearch(type="text", placeholder="search", data-target="#nonRegFriend")
+			div#nonRegFriendWrapper
+				div.content-block-title FACEBOOK FRIEND LIST
+				div.list-block
+					ul#nonRegFriend
+
+div#friendList.popup.page.navbar-fixed
+	div.navbar
+		div.navbar-inner
+			div.left
+			div.center Friend list
+			div.right 
+				a.headerBtn.black.icon-remove(onclick="sgd.framework7.closeModal()")
+	
+	div.page-content.infinite-scroll
+		div.content-block
+			input.friendListSearch(type="text", placeholder="search", data-target="#regFriend")
+		div#regFriendWrapper
+			div.content-block-title WOOISHUI USER
+			div.list-block
+				ul#regFriend
+

@@ -1,0 +1,35 @@
+div.page.navbar-fixed.cached#formSecond(data-page="form-second")
+	+navbar('cancel')
+	div.page-content.infinite-scroll 
+		form#debtForm(action="get")
+			input(type="hidden", name="itemid")
+			input(type="hidden", name="callback")
+			div.content-block
+				div.row.debtType
+					div.col-33.left.userImageContain
+					div.col-33.middle
+						div.row
+							div.col-33
+								span.icon-caret-left
+							div.col-33
+								span.icon-banknote
+							div.col-33
+								span.icon-caret-right
+					div.col-33.right.userImageContain
+			div.list-block
+				ul
+					li.item-content
+						div.item-inner
+							div.item-title.label AMOUNT
+							div.item-input
+								input(type="number", placeholder="AMOUNT", name="price")
+					li.item-content.align-top
+						div.item-inner
+							div.item-title.label DESCRIPTION
+							div.item-input
+								input(type="text", placeholder="DESCRIPTION", name="desc")
+			input#otherUserID(type="hidden")
+			div.content-block
+				div.row
+					div.col-100
+						a.button.button-fill.button-big.color-red(href="javascript:void(0)", onclick="sgd.submitDebt()") CONFIRM

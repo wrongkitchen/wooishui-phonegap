@@ -1,10 +1,16 @@
-.facebookLogin{ 
-	background-image: url(../images/facebook-login.png); 
-	width:202px; height:45px; position:absolute; top:50%; margin-top:22px;
-	left:50%; margin-left:-101px;
-}
-#beforeLogin{ display: none; }
-.gradient-pattern {
+#beforeLogin{
+	.loginLogo{
+		position:absolute; height:90px; width:100%;
+		top:50%;margin-top:-90px;
+		color:#FFF;font-family:'Lobster',cursive;
+		font-size:72px;
+		text-align:center;
+	}
+	.facebookLogin{ 
+		background-image: url(../images/facebook-login.png); 
+		width:202px; height:45px; position:absolute; top:50%; margin-top:22px;
+		left:50%; margin-left:-101px;
+	}
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
@@ -23,25 +29,6 @@
 	background-clip: border-box;
 	-webkit-background-size: 50px 50px;
 	background-size: 50px 50px;
-}
-#header{
-	&.cancel{
-		#cancelBtn{ display:block; }  
-		#backBtn, #addBtn{ display:none; }  
-	}
-	&.back{
-		#backBtn{ display:block; }  
-		#cancelBtn, #addBtn{ display:none; }  
-	}
-	#cancelBtn{ display:none; }
-	#backBtn{ display:none; }
-	.headerBtn{
-		font-size: 24px; height: 100%; line-height: 50px; z-index: 10;
-	    border: none; text-align: center; color: #FFF; margin:0;
-	    display: block; font-weight: normal;
-	    &.txt{ font-size:18px; }
-	    &.black{ color:#000; }
-	}
 }
 #formSecond{
 	.buttons-row .button{ 

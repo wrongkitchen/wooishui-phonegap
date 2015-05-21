@@ -1,0 +1,21 @@
+div.page.navbar-fixed.cached(data-page="form")
+	+navbar('cancel')
+	div.page-content.infinite-scroll 
+		div.content-block-title Create new debt
+		div.list-block
+			ul
+				li.item-content
+					div.item-inner
+						div.item-title.label Name
+						div.item-input
+							input#otherUserName(type="text", placeholder="Name")
+		div.content-block
+			div.row
+				div.col-100
+					a.button.button-fill.color-red.button-big(onclick="sgd.changeSection('form-second', [], true)") Enter
+		div.content-block-label 
+			p.or or
+		div.content-block
+			div.row
+				div.col-100
+					a.button.button-fill.button-big(onclick="sgd.popupFriendList.loadFormPicker()") Select other wooishui user

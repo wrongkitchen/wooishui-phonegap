@@ -1,0 +1,13 @@
+div.page.navbar-fixed.cached(data-page="home")
+	+navbar('add')
+	div#homeDebts.page-content.infinite-scroll.pull-to-refresh-content
+		div.pull-to-refresh-layer
+			div.preloader
+			div.pull-to-refresh-arrow
+		div.content-block-title#dataListError 
+			span.icon-page-search
+			div.txt Cannot find any debt
+		div#dataListWrap
+			div.content-block-title My debts
+			div.list-block
+				ul#dataList

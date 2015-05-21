@@ -1,10 +1,19 @@
-//- Homepage Markup
-extend ./layouts/unauthorized
+extends ./layouts/base
+include components/header.jade
 
 block content
 
-	div#beforeLogin
-		div(style="position:absolute;height:90px;width:100%;top:50%;margin-top:-90px;color:#FFF;font-family:'Lobster',cursive;font-size:72px;text-align:center;")
-			| wooishui
+	div.pages
 		
-		div.facebookLogin
+		div.page#beforeLogin(data-page="login")
+			div.page-content
+				div.loginLogo wooishui
+				div.facebookLogin
+
+		include pages/home.jade
+
+		include pages/detail.jade
+
+		include pages/form.jade
+
+		include pages/form-second.jade

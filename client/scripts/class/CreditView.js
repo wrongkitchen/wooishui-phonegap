@@ -58,7 +58,7 @@ define('CreditView', function(){
 		},
 		showDetail: function(e){
 			var cid = $(e.currentTarget).find('.cid').val();
-			sgd.changeSection('detail', [cid]);
+			sgd.changeSection('detail', { uid: cid });
 		}
 	});
 });

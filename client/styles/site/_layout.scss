@@ -19,15 +19,18 @@ a{
 input{ font-weight: lighter; } 
 .container{ margin: 0 auto; padding: 0 2em; }
 #layout{ min-height:100%; }
-#header{ 
-	position:relative;
-	.navbar{ background-color: $main-theme-color; }
-	.left, .center, .right{ 
-		height:100%; 
+.navbar.root{ 
+	background-color: $main-theme-color;
+	.headerBtn{
+		font-size: 24px; height: 100%; line-height: 50px; z-index: 10;
+	    border: none; text-align: center; color: #FFF; margin:0;
+	    display: block; font-weight: normal;
+	    &.txt{ font-size:18px; }
+	    &.black{ color:#000; }
 	}
+	.left, .center, .right{ height:100%; }
 	.logo{ 
-		position:absolute; top:0; height:100%; width:98px; left:50%; 
-		margin-left:-49px; z-index:1000; font-size:28px;
+		height:100%; width:98px; font-size:28px;
 		font-family:'Lobster', cursive; color:#FFF; 
 	}
 	.center{ font-size:28px; }

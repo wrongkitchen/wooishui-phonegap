@@ -6,7 +6,7 @@
 var taskConfig = function(grunt) {
 
     grunt.config.set('useminPrepare', {
-        html: ['<%= yeogurt.dist %>/index.html', '<%= yeogurt.dist %>/main.html'],
+        html: '<%= yeogurt.dist %>/index.html',
         options: {
             root: '<%= yeogurt.client %>',
             dest: '<%= yeogurt.dist %>'
@@ -14,7 +14,7 @@ var taskConfig = function(grunt) {
     });
 
     grunt.config.set('usemin', {
-        html: ['<%= yeogurt.dist %>/index.html', '<%= yeogurt.dist %>/main.html'],
+        html: '<%= yeogurt.dist %>/index.html',
         options: {
             assetsDirs: ['<%= yeogurt.client %>', '<%= yeogurt.client %>/images']
         }
