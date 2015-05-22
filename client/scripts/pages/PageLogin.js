@@ -3,12 +3,13 @@
 define('PageLogin', ['PageBase'], function(pb){
 
 	var _sgd = (window.sgd) ? window.sgd : {};
-	var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
 	return pb.extend({
 		initialize: function(){
 
 			if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+				
+				var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 				
 				var beforeLogin = function(pObj){
 					pushNotification.registerDevice(

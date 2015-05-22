@@ -11,8 +11,9 @@ require([
 		'PageLogin',
 		'PageHome',
 		'PageDetail',
+		'PageForm',
 		'PageFormSecond'
-	], function(fbh, pfl, dc, pageLogin, pageHome, pageDetail, pageFormSecond){
+	], function(fbh, pfl, dc, pageLogin, pageHome, pageDetail, pageForm, pageFormSecond){
 	
 	var $$ = Dom7, _sgd = (window.sgd) ? window.sgd : {};
 
@@ -99,6 +100,7 @@ require([
 		login: new pageLogin(),
 		home: new pageHome(),
 		detail: new pageDetail(),
+		form: new pageForm(),
 		'form-second': new pageFormSecond()
 	};
 
@@ -146,18 +148,6 @@ require([
 		$('input#otherUserName').val(_userName);
 		$('input#otherUserID').val(_userUID);
 		_sgd.changeSection('form-second');
-	});
-	$('.debtType .left').on('click', function(){
-		$('.debtType .middle').addClass('creatorDebt');
-	});
-	$('.debtType .right').on('click', function(){
-		$('.debtType .middle').removeClass('creatorDebt');
-	});
-	$('.debtType .middle').on('click', function(){
-		if($(this).hasClass('creatorDebt'))
-			$(this).removeClass('creatorDebt');
-		else 
-			$(this).addClass('creatorDebt');
 	});
 	$('#menu a.internal').on('click', function(){
 		_sgd.changeSection($(this).attr('href'));
